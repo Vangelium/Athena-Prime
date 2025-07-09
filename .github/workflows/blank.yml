@@ -33,6 +33,7 @@ jobs:
 
       # Install dependencies
       - name: Install dependencies # Nombre del paso: Instalar dependencias
+        working-directory: ./ # Asegura que se ejecute desde la raíz del repositorio
         run: | # Ejecuta múltiples comandos
           python -m pip install --upgrade pip # Actualiza pip
           pip install -r requirements.txt # Instala todas las bibliotecas de nuestro requirements.txt
@@ -42,6 +43,12 @@ jobs:
         run: |
           mkdir -p results_corridas/temp_test_run # Crea una carpeta temporal para los resultados de la prueba
           mkdir -p resultados_datos # Asegura que exista el directorio para goldbach_residuos.csv
+
+      # Copy Riemann zeros data for correlation test
+      - name: Copy Riemann zeros data # Nombre del paso: Copiar datos de ceros de Riemann
+        run: |
+          # Asegúrate de que este archivo esté en tu repositorio en la ruta especificada
+          cp data/processed/riemann_zeros/riemann_zeros_data_cleaned.csv resultados_datos/riemann_zeros_data_cleaned.csv
 
       # Run a small analysis to test the main script
       - name: Run a small analysis test # Nombre del paso: Ejecutar una pequeña prueba de análisis
@@ -62,12 +69,8 @@ jobs:
       - name: Run Riemann correlation test # Nombre del paso: Ejecutar prueba de correlación Riemann
         working-directory: ./scripts/analysis # Ejecuta el comando desde la carpeta scripts/analysis
         run: |
-          # Asegúrate de que riemann_zeros_data_cleaned.csv esté accesible para este script
-          # Puedes copiarlo desde donde se generó originalmente a la carpeta de datos
-          # (Este paso asume que riemann_zeros_data_cleaned.csv está en la raíz del repo o data/)
-          # Si no está, necesitarás un paso para copiarlo o generarlo.
-          # Por ahora, asumimos que el script lo encontrará si está en la ruta correcta.
-          python correlacion_frecuencias_riemann_modular.py # Este script lee el CSV y compara
+          # Este script lee el CSV y compara. Ahora el archivo debería estar en resultados_datos/
+          python correlacion_frecuencias_riemann_modular.py
 
       # You can add more test steps here, e.g., for specific functions or modules
       # - name: Run unit tests (if you have them)
