@@ -55,4 +55,4 @@ Para una mejor organización, sugerimos la siguiente estructura:
 
 La siguiente imagen muestra la señal estructural que fue revelada después de la Misión de Normalización. Es sobre esta señal que se realiza el análisis espectral final.
 
-![Residuo Normalizado](URL_A_LA_IMAGEN_DEL_RESIDUO_NORMALIZADO)  <-- *Nota: Aquí se debe poner el enlace a la imagen una vez subida a GitHub.*
+![Residuo Normalizado](https://github.com/Vangelium/Athena-Prime/blob/main/images/Residuo%20Normalizado%20(Post-Correccion%20de%20Varienza).png?raw=true)  <-- *Nota: Aquí se debe poner el enlace a la imagen una vez subida a GitHub.*
